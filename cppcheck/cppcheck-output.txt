@@ -1,0 +1,291 @@
+15-catch-me-if-you-can/Test/IgracTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/catch.hpp:2725:0: error: failed to expand 'REQUIRE_NOTHROW', Invalid ## usage when expanding 'INTERNAL_CATCH_NO_THROW'. [preprocessorErrorDirective]
+#define INTERNAL_CATCH_NO_THROW( macroName, resultDisposition, ... ) \
+^
+15-catch-me-if-you-can/Test/ImunitetTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/catchme/include/polje.h:13:5: style: Class 'Polje' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    Polje(int redniBroj);
+    ^
+15-catch-me-if-you-can/Test/KaznaTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/KockaTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/KvizTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/LoptaTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/NagradaTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/PitanjeTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/PoljeTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/catch.hpp:2701:0: error: failed to expand 'REQUIRE', Invalid ## usage when expanding 'INTERNAL_CATCH_TEST'. [preprocessorErrorDirective]
+#define INTERNAL_CATCH_TEST( macroName, resultDisposition, ... ) \
+^
+15-catch-me-if-you-can/Test/SpisakPitanjaTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/TestNagrada.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/TunelTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/ZatvorTest.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 109 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/test.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 107 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+15-catch-me-if-you-can/Test/catch.hpp:17541:5: error: syntax error [syntaxError]
+    [pool drain];
+    ^
+15-catch-me-if-you-can/Test/catch.hpp:9306:13: performance: Variable 'm_ref' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+            m_ref = std::make_shared<BoundValueRef<std::string>>( ref );
+            ^
+15-catch-me-if-you-can/Test/catch.hpp:9311:13: performance: Variable 'm_ref' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+            m_ref = std::make_shared<BoundLambda<LambdaT>>( lambda );
+            ^
+15-catch-me-if-you-can/Test/catch.hpp:8646:10: style:inconclusive: Technically the member function 'Catch::clara::TextFlow::Column::operator+' can be const. [functionConst]
+    auto operator + (Column const& other)->Columns;
+         ^
+15-catch-me-if-you-can/Test/catch.hpp:8773:21: note: Technically the member function 'Catch::clara::TextFlow::Column::operator+' can be const.
+inline auto Column::operator + (Column const& other) -> Columns {
+                    ^
+15-catch-me-if-you-can/Test/catch.hpp:8646:10: note: Technically the member function 'Catch::clara::TextFlow::Column::operator+' can be const.
+    auto operator + (Column const& other)->Columns;
+         ^
+15-catch-me-if-you-can/Test/catch.hpp:8747:10: style:inconclusive: Technically the member function 'Catch::clara::TextFlow::Columns::operator+' can be const. [functionConst]
+    auto operator + (Column const& col) -> Columns {
+         ^
+15-catch-me-if-you-can/Test/catch.hpp:9490:14: style:inconclusive: Technically the member function 'Catch::clara::detail::Parser::operator|=' can be const. [functionConst]
+        auto operator|=( ExeName const &exeName ) -> Parser & {
+             ^
+15-catch-me-if-you-can/Test/catch.hpp:8034:9: style: Class 'FatalConditionHandlerGuard' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+        FatalConditionHandlerGuard(FatalConditionHandler* handler):
+        ^
+15-catch-me-if-you-can/Test/catch.hpp:8829:9: style: Class 'Args' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+        Args( std::initializer_list<std::string> args )
+        ^
+15-catch-me-if-you-can/Test/catch.hpp:9471:9: style: Struct 'Help' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+        Help( bool &showHelpFlag )
+        ^
+15-catch-me-if-you-can/Test/catch.hpp:9118:22: style: The function 'isFlag' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride]
+        virtual auto isFlag() const -> bool { return true; }
+                     ^
+15-catch-me-if-you-can/Test/catch.hpp:9111:22: note: Virtual function in base class
+        virtual auto isFlag() const -> bool { return false; }
+                     ^
+15-catch-me-if-you-can/Test/catch.hpp:9118:22: note: Function in derived class
+        virtual auto isFlag() const -> bool { return true; }
+                     ^
+15-catch-me-if-you-can/Test/catch.hpp:8524:18: style: Local variable 'width' shadows outer function [shadowFunction]
+            auto width = m_column.m_width - indent();
+                 ^
+15-catch-me-if-you-can/Test/catch.hpp:8616:10: note: Shadowed declaration
+    auto width(size_t newWidth) -> Column& {
+         ^
+15-catch-me-if-you-can/Test/catch.hpp:8524:18: note: Shadow variable
+            auto width = m_column.m_width - indent();
+                 ^
+15-catch-me-if-you-can/Test/catch.hpp:8682:29: style: Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm]
+                m_iterators.push_back(col.end());
+                            ^
+15-catch-me-if-you-can/Test/catch.hpp:8698:29: style: Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm]
+                m_iterators.push_back(col.begin());
+                            ^
+15-catch-me-if-you-can/Test/catch.hpp:9408:0: style: Consider using std::any_of algorithm instead of a raw loop. [useStlAlgorithm]
+                if( normaliseOpt( name ) == normalisedToken )
+^
+15-catch-me-if-you-can/Test/catch.hpp:9559:26: style: Consider using std::accumulate algorithm instead of a raw loop. [useStlAlgorithm]
+                optWidth = (std::max)(optWidth, cols.left.size() + 2);
+                         ^
+15-catch-me-if-you-can/Test/catch.hpp:7843:24: style: Local variable 'outlier_variance' shadows outer function [shadowFunction]
+                double outlier_variance = Detail::outlier_variance(mean_estimate, stddev_estimate, n);
+                       ^
+15-catch-me-if-you-can/Test/catch.hpp:7779:20: note: Shadowed declaration
+            double outlier_variance(Estimate<double> mean, Estimate<double> stddev, int n) {
+                   ^
+15-catch-me-if-you-can/Test/catch.hpp:7843:24: note: Shadow variable
+                double outlier_variance = Detail::outlier_variance(mean_estimate, stddev_estimate, n);
+                       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_id' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_naRedu' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_brojZivota' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_boja' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_redniBrojPolja' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:3:8: warning:inconclusive: Member variable 'Igrac::_uZatvoru' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac()
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:8:8: warning: Member variable 'Igrac::_naRedu' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac(unsigned int id,  QString &ime,Boja boja) : _id(id),
+       ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:17:8: warning: Member variable 'Igrac::_naRedu' is not initialized in the constructor. [uninitMemberVar]
+Igrac::Igrac(unsigned int id, const QString &ime, int brojZivota, Boja boja, int redniBrojPolja) : _id(id),
+       ^
+15-catch-me-if-you-can/catchme/src/igrica.cpp:4:9: warning: Member variable 'Igrica::_pogodiBroj' is not initialized in the constructor. [uninitMemberVar]
+Igrica::Igrica(int redniBroj, const QList<Igrac * > &igraci)
+        ^
+15-catch-me-if-you-can/catchme/src/igrica.cpp:4:9: warning: Member variable 'Igrica::_zmijica' is not initialized in the constructor. [uninitMemberVar]
+Igrica::Igrica(int redniBroj, const QList<Igrac * > &igraci)
+        ^
+15-catch-me-if-you-can/catchme/src/kviz.cpp:6:7: warning: Member variable 'Kviz::_izvucenoPitanje' is not initialized in the constructor. [uninitMemberVar]
+Kviz::Kviz(int redniBroj, const QList<Igrac *> &igraci, int korisnikovOdgovor)
+      ^
+15-catch-me-if-you-can/catchme/src/kviz.cpp:6:7: warning: Member variable 'Kviz::_kvizWindow' is not initialized in the constructor. [uninitMemberVar]
+Kviz::Kviz(int redniBroj, const QList<Igrac *> &igraci, int korisnikovOdgovor)
+      ^
+15-catch-me-if-you-can/catchme/src/kviz.cpp:9:5: warning: Class 'Kviz' does not have a copy constructor which is recommended since it has dynamic memory/resource allocation(s). [noCopyConstructor]
+    _pitanja=new SpisakPitanja();
+    ^
+15-catch-me-if-you-can/catchme/src/kviz.cpp:9:5: warning: Class 'Kviz' does not have a operator= which is recommended since it has dynamic memory/resource allocation(s). [noOperatorEq]
+    _pitanja=new SpisakPitanja();
+    ^
+15-catch-me-if-you-can/catchme/src/lopta.cpp:15:5: performance: Variable '_boja' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+    _boja = (Qt::blue);
+    ^
+15-catch-me-if-you-can/catchme/src/partija.cpp:206:30: style:inconclusive: Function 'setShade' argument 1 names different: declaration 'shade' definition 'newshade'. [funcArgNamesDifferent]
+void Partija::setShade(Shade newshade)
+                             ^
+15-catch-me-if-you-can/catchme/include/partija.h:47:25: note: Function 'setShade' argument 1 names different: declaration 'shade' definition 'newshade'.
+    void setShade(Shade shade);
+                        ^
+15-catch-me-if-you-can/catchme/src/partija.cpp:206:30: note: Function 'setShade' argument 1 names different: declaration 'shade' definition 'newshade'.
+void Partija::setShade(Shade newshade)
+                             ^
+15-catch-me-if-you-can/catchme/include/pitanje.h:16:13: style:inconclusive: Technically the member function 'Pitanje::getTekstPitanja' can be const. [functionConst]
+    QString getTekstPitanja();
+            ^
+15-catch-me-if-you-can/catchme/src/pitanje.cpp:30:18: note: Technically the member function 'Pitanje::getTekstPitanja' can be const.
+QString Pitanje::getTekstPitanja()
+                 ^
+15-catch-me-if-you-can/catchme/include/pitanje.h:16:13: note: Technically the member function 'Pitanje::getTekstPitanja' can be const.
+    QString getTekstPitanja();
+            ^
+15-catch-me-if-you-can/catchme/src/pogodibroj.cpp:11:5: warning: Class 'PogodiBroj' does not have a copy constructor which is recommended since it has dynamic memory/resource allocation(s). [noCopyConstructor]
+    ui(new Ui::PogodiBroj)
+    ^
+15-catch-me-if-you-can/catchme/src/pogodibroj.cpp:11:5: warning: Class 'PogodiBroj' does not have a operator= which is recommended since it has dynamic memory/resource allocation(s). [noOperatorEq]
+    ui(new Ui::PogodiBroj)
+    ^
+15-catch-me-if-you-can/catchme/src/prikazpobednika.cpp:40:17: style: Local variable 'pozadina' shadows outer variable [shadowVariable]
+        QString pozadina = ostaliIgraci[i]->getPozadina();
+                ^
+15-catch-me-if-you-can/catchme/src/prikazpobednika.cpp:31:13: note: Shadowed declaration
+    QString pozadina = pobednik->getPozadina();
+            ^
+15-catch-me-if-you-can/catchme/src/prikazpobednika.cpp:40:17: note: Shadow variable
+        QString pozadina = ostaliIgraci[i]->getPozadina();
+                ^
+15-catch-me-if-you-can/catchme/src/spisakpitanja.cpp:154:61: style:inconclusive: Function 'filtrirajSpisakPitanja' argument 1 names different: declaration 'mdode' definition 'mode'. [funcArgNamesDifferent]
+QList<Pitanje* > SpisakPitanja::filtrirajSpisakPitanja(Mode mode) {
+                                                            ^
+15-catch-me-if-you-can/catchme/include/spisakpitanja.h:14:50: note: Function 'filtrirajSpisakPitanja' argument 1 names different: declaration 'mdode' definition 'mode'.
+    QList<Pitanje* > filtrirajSpisakPitanja(Mode mdode);
+                                                 ^
+15-catch-me-if-you-can/catchme/src/spisakpitanja.cpp:154:61: note: Function 'filtrirajSpisakPitanja' argument 1 names different: declaration 'mdode' definition 'mode'.
+QList<Pitanje* > SpisakPitanja::filtrirajSpisakPitanja(Mode mode) {
+                                                            ^
+15-catch-me-if-you-can/catchme/src/spisakpitanja.cpp:158:26: style: Consider using std::copy_if algorithm instead of a raw loop. [useStlAlgorithm]
+            spisakPitanja.push_back(p);
+                         ^
+15-catch-me-if-you-can/catchme/src/igrac.cpp:87:0: style: The function 'getBoja' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:40:0: style: The function 'getBrojIgraca' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:351:0: style: The function 'getPozoviBreakout' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/miniigrazmijica.cpp:76:0: style: The function 'keyPressEvent' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/reket.cpp:22:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/lopta.cpp:45:0: style: The function 'myCollidingBlocks' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:114:0: style: The function 'on_btBaciKocku_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:35:0: style: The function 'on_btIzadjiIzIgre_partija_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:81:0: style: The function 'on_btNapustiIgru_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:76:0: style: The function 'on_btNazad_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:91:0: style: The function 'on_btPodesavanja_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:86:0: style: The function 'on_btPodesiIgrace_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:71:0: style: The function 'on_btPravilaIgre_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:59:0: style: The function 'on_btZapocniPartiju_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/pogodibroj.cpp:49:0: style: The function 'on_pbManje_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/kvizwindow.cpp:41:0: style: The function 'on_pbOdg1_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/kvizwindow.cpp:61:0: style: The function 'on_pbOdg2_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/kvizwindow.cpp:85:0: style: The function 'on_pbOdg3_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:113:0: style: The function 'on_pbPotvrdi_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/pogodibroj.cpp:67:0: style: The function 'on_pbVece_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/kvizwindow.cpp:109:0: style: The function 'on_pbZapocni_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/mainwindow.cpp:96:0: style: The function 'on_pushButton_clicked' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/blok.cpp:17:0: style: The function 'paint' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:186:0: style: The function 'polja' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/lopta.cpp:225:0: style: The function 'setBoja' is never used. [unusedFunction]
+
+^
+15-catch-me-if-you-can/catchme/src/partija.cpp:201:0: style: The function 'shade' is never used. [unusedFunction]
+
+^
