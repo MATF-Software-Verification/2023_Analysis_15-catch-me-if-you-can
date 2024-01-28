@@ -74,7 +74,7 @@ Za instalaciju *Cppcheck* alata potrebno je u terminalu pokrenuti sledeću koman
 sudo apt-get install cppcheck
 ```
 
-Dodatne opcije koje su koriscene prilikom analize:
+Dodatne opcije koje su korišćene prilikom analize:
 - *--inconclusive* : alat prijavljuje i neodlučne greške (greške koje nije mogao da kategorizuje kao greške ili upozorenja i bez ove opcije ih ne bi uključio u izveštaj)
 - *--enable=all* : alat uključuje sve dostupne provere koje može da izvrši
 - *--suppress=missingInclude* : alat ignoriše greske koje se dobijaju iz *header*-a (kako bi se izbegao problem sa proveravanjem eksternih biblioteka koje se uključuju u *header* fajlovima)
