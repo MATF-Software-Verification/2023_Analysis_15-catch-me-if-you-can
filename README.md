@@ -7,7 +7,8 @@
 
 
 # :wrench: Alati koji su korišćeni:
-
+* Clang-Tidy
+* Clazy
 
 
 
