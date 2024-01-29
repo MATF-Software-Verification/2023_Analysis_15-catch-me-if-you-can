@@ -176,6 +176,8 @@ Dodatne opcije koje su korišćene prilikom analize:
 - *--tack-origins=yes* : omogućava lakše pronalaženje dela programa u kom se nalazi memoriski propust (može usporiti rad alata)
 - *--log-file="report-memcheck.txt"* : rezultati analize će biti upisani u *report-memcheck.txt* fajl
 
+Pre pokretanja komande potrebno je prevesti program u **Debug** režimu.
+
 Komanda kojom je pokrenuta analiza na kraju izgleda ovako:
 ```
 valgrind --show-leak-kinds=all --leak-check=full --track-origins=yes --log-file="report-memcheck.txt" ./catchme 
@@ -219,3 +221,34 @@ Unutar samog [*Catch me if you can*](https://gitlab.com/matf-bg-ac-rs/course-rs/
 Dobra praksa bi bila i uvođenje *unique_ptr* i *shared_ptr* pokazivača, na mestima gde je to pogodno, jer oni sami brinu o svom oslobađanju.
 
 
+### Callgrind
+
+Callgrind je alat za profajliranje koji čuva istoriju poziva funkcija u programu kao graf poziva.\
+Neke od informacija koje se mogu dobiti za zadati program su:
+* broj izvršenih instrukcija
+* odnosi izvršenih instrukcija sa odgovarajućim linijama koda
+* caller/callee odnos između funkcija (sa frekvencijama)
+* informacije o keširanju (promašaji, pogodci, ...)
+
+Dodatna opcija koja je korišćena prilikom analize:
+- *--log-file="report-callgrind"* : rezultati analize će biti upisani u *report-callgrind* fajl
+
+Pre pokretanja komande potrebno je prevesti program u **Profile** režimu.
+
+Komanda kojom je pokrenuta analiza izgleda ovako:
+```
+valgrind --tool=callgrind --log-file="report-callgrind" ./catchme
+```
+
+Kao rezultat analize, pored *report-callgrind* fajla dobija se i [*callgrind.out.11677*](valgrind/callgrind/callgrind.out.11677) fajl (`11677` je PID). \
+*callgrind.out.11677* moze se otvoriti pomoću **KCachegrind** pomoćnog alata za vizuelizaciju.
+
+Prikaz *Calle Map* i *Calles* za funkciju *MainWindow(QWidget\*)*:
+
+![img](valgrind/callgrind/kcachegrind_mainwindow.png)
+
+Na sledećoj slici sa leve strane nalaze se informacije o broju poziva svake funkcije i broju instrukcija koje je zahtevalo njeno izvršavanje, samostalno i uključujući izvršavanja drugih funkcija koje je pozivala. Na desnoj strani izabrana je opcija *Callers* koja prikazuje funkcije koje su pozivale funkciju *MainWindow(QWidget\*)*.
+
+![img](valgrind/callgrind/kcachegrind_mainwindow_callers_callees.png)
+
+**Komentar:** Posmatranjem izveštaja, moze se zaključiti da nema velikog broja poziva funkcija u delu koda koji su implementirali programeri projekta.
