@@ -108,3 +108,38 @@ Igrac::Igrac()
 * > 15-catch-me-if-you-can/catchme/src/partija.cpp:40:0: style: The function 'getBrojIgraca' is never used. [unusedFunction]
 
      **Komentar:** Alat upozorava da funkcija `getBrojIgraca` nije nigde pozvana.
+  
+
+## Flawfinder
+
+**Flawfinder** je alat koji služi za otkrivanje bezbedonosnih propusta u programima napisanim u *C* i *C++* programskom jeziku. Koristi predefinisani skup pravila i sa njima pretražuje izvorni kod kako bi pronašao potencijalno nebezbedna mesta unutar programa. Kao rezultat primene ovog alata dobija se izveštaj sa propustima, pri čemu se svakom propustu dodeljuje određeni nivo značajnosti. 
+
+Za instalaciju *Flawfinder* alata potrebno je u terminalu pokrenuti sledeću komandu:
+```
+sudo apt-get install flawfinder
+```
+
+Dodatna opcija koja je korišćena prilikom analize:
+- *--html* : izveštaj je napisan u *html* formatu
+
+Komanda kojom je pokrenuta analiza izgleda ovako:
+```
+flawfinder --html 15-catch-me-if-you-can > flawfinder_result.html
+```
+
+Kompletan rezultat primene *Flawfinder* alata nalazi se u fajlu [*flawfinder_result.html*](flawfinder/flawfinder_result.html).
+U okviru tog *html* fajla, za svaku od prijavljenih grešaka postoji link ka dokumentaciji gde se mogu naći detaljnije informacije o samoj grešci.
+
+   ![img](flawfinder/flawfinder_result_image.png)
+
+Neke od prijavljenih grešaka:
+
+   * ***CWE-327*** :
+        - Upozorava da program koristi neispravan ili rizičan kriptografski algoritam ili protokol. Ovo može dovesti do otkrivanja osetljivih informacija, lažiranja identitea, modifikovanja podataka i drugih neželjenih događaja.
+        - Analiza je ovom propustu dodelila nivo **3**. Upozorenje se odnosi na funkcije `random` i `srand` u nekoliko različitih fajlova.
+   * ***CWE-119 / CWE-120***  :
+        - Upozorenja govore da program radi sa memorijskim baferom bez proveravanja negove veličine. Upozorenje predlaže proveru veličine bafera kako bi se izbeglo čitanje i pisanje van opsega statički alociranog bafera.
+        - Analiza je ovom propustu dodelila nivo **2**.
+   * ***CWE-362*** :
+        - Upozorava da program sadrži sekvencu koja zahteva privremeni ekskluzivi pristup deljenim podacima, ali da to nije obezbeđeno.
+        - Analiza je ovom propustu dodelila nivo **2**. Ovo upozorenje se pojavljuje sedam puta u izveštaju i svuda se odnosi na otvaranje fajlova pomoću funkcije `open`.
