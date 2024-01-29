@@ -143,3 +143,79 @@ Neke od prijavljenih grešaka:
    * ***CWE-362*** :
         - Upozorava da program sadrži sekvencu koja zahteva privremeni ekskluzivi pristup deljenim podacima, ali da to nije obezbeđeno.
         - Analiza je ovom propustu dodelila nivo **2**. Ovo upozorenje se pojavljuje sedam puta u izveštaju i svuda se odnosi na otvaranje fajlova pomoću funkcije `open`.
+
+          
+
+## Vlagrind alati
+
+Valgrind je profajler otvorenog koda koji nadgleda funkcionisanje programa i prijavljuje nepravilnosti u radu tog programa ukoliko one postoje. 
+
+Valgrind obuhvata sledeće alate: 
+* *Memcheck* (detektor memorijskih grešaka)
+* *Massif* (praćenje rada dinamičke memorije)
+* *Callgrind* (profajler funkcija)
+* *Cachegrind* (profajler kes memorije)
+* *Hellgrind* i *DRD* (detektori gresaka u radu sa nitima)
+
+Za instalaciju *Valgrind* alata potrebno je u terminalu pokrenuti sledeću komandu:
+```
+sudo apt-get install valgrind
+```
+
+U okviru projekta analiza je rađena pomocu alata *Memcheck* i *Callgrind*.
+
+
+### Memcheck
+
+**Memcheck** je alat koji se prilikom korišćenja Valgrind-a podrazumevano poziva. Koristi se za detektovanje memorijskih grešaka i sprovođenja analize nad mašinskim kodom. 
+Upotrebom *Memcheck*-a mogu se otkriti različite vrste problema, kao što su curenja memorije, pristup ili upisivanje vrednosti van opsega, korišćenje neinicijalizovanih vrednosti, pristup već oslobođenoj memoriji.
+
+Dodatne opcije koje su korišćene prilikom analize:
+- *--show-lead-kinds=all* : prikazuje sve vrse curenja memorije u programu
+- *--leak-check=full* : daje informacije o svim definitivno izgubljenim ili eventualno izgubljenim blokovima, uključujući i informacije o njihovoj alokaciji
+- *--tack-origins=yes* : omogućava lakše pronalaženje dela programa u kom se nalazi memoriski propust (može usporiti rad alata)
+- *--log-file="report-memcheck.txt"* : rezultati analize će biti upisani u *report-memcheck.txt* fajl
+
+Komanda kojom je pokrenuta analiza na kraju izgleda ovako:
+```
+valgrind --show-leak-kinds=all --leak-check=full --track-origins=yes --log-file="report-memcheck.txt" ./catchme 
+```
+
+Kompletan izveštaj dobijen primenom *Memcheck* alata nalazi se u fajlu [*report-memcheck.txt*](valgrind/memcheck/report-memcheck.txt).
+
+Sažetak analize (`12120` je PID):
+```
+==12120== LEAK SUMMARY:
+==12120==    definitely lost: 2,560 bytes in 4 blocks
+==12120==    indirectly lost: 14,811 bytes in 622 blocks
+==12120==      possibly lost: 12,411 bytes in 158 blocks
+==12120==    still reachable: 336,728,275 bytes in 26,955 blocks
+==12120==                       of which reachable via heuristic:
+==12120==                         length64           : 19,504 bytes in 262 blocks
+==12120==                         newarray           : 13,560 bytes in 137 blocks
+==12120==         suppressed: 0 bytes in 0 blocks
+```
+
+Primer steka poziva:
+```
+==12120== 314,112,000 bytes in 24 blocks are still reachable in loss record 12,385 of 12,385
+==12120==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==12120==    by 0x50DC135: QImageData::create(QSize const&, QImage::Format) (qimage.cpp:145)
+==12120==    by 0x50DC45A: QImage::QImage(QSize const&, QImage::Format) (qimage.cpp:799)
+==12120==    by 0x50DC495: QImage::QImage(int, int, QImage::Format) (qimage.cpp:783)
+==12120==    by 0x50DC792: QImage::copy(QRect const&) const (qimage.cpp:1204)
+==12120==    by 0x50DCCD2: QImage::detach() (qimage.cpp:1111)
+==12120==    by 0x50DFD8B: reinterpretAsFormat (qimage.cpp:2360)
+==12120==    by 0x50DFD8B: QImage::reinterpretAsFormat(QImage::Format) (qimage.cpp:2350)
+==12120==    by 0x5114679: QRasterPlatformPixmap::createPixmapForImage(QImage, QFlags<Qt::ImageConversionFlag>) (qpixmap_raster.cpp:301)
+==12120==    by 0x51149D9: QRasterPlatformPixmap::fromImage(QImage const&, QFlags<Qt::ImageConversionFlag>) (qpixmap_raster.cpp:109)
+==12120==    by 0x511D169: QPlatformPixmap::fromFile(QString const&, char const*, QFlags<Qt::ImageConversionFlag>) (qplatformpixmap.cpp:101)
+==12120==    by 0x5112D2F: QPixmap::load(QString const&, char const*, QFlags<Qt::ImageConversionFlag>) (qpixmap.cpp:729)
+==12120==    by 0x4A6BB94: QStyleSheetStyle::loadPixmap(QString const&, QObject const*) (qstylesheetstyle.cpp:6492)
+```
+
+**Komentar:** Iz sažetka možemo videti da ima dosta primera curenja memorije (definitivno izgubljene, inidirektno izgubljene i moguće izgubljene memorije). Ispitivanjem steka poziva primećuje se da su `Qt` ugrađene funkcije skoro uvek odgovorne za alociranje memorije na hipu. \
+Unutar samog [*Catch me if you can*](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/15-catch-me-if-you-can) projekta najčešće se koriste prazni (ugrađeni) destruktori, koji nisu dovoljni kako bi se zaista oslobodila memorija na hipu, što izaziva curenje memorije. \
+Dobra praksa bi bila i uvođenje *unique_ptr* i *shared_ptr* pokazivača, na mestima gde je to pogodno, jer oni sami brinu o svom oslobađanju.
+
+
