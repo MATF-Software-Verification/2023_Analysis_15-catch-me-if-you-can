@@ -85,6 +85,11 @@ Komanda na kraju izgleda ovako:
 cppcheck --inconclusive --enable=all --suppress=missingInclude --output-file="cppcheck-output.txt" 15-catch-me-if-you-can
 ```
 
+Pokreće se pomoću [skripte](cppcheck/run_cppcheck.sh):
+```
+./run_cppcheck.sh
+```
+
 Kompletan izveštaj dobijen primenom *cppcheck* alata nalazi se u fajlu [*cppcheck-output.txt*](cppcheck/cppcheck-output.txt).
 
 Neki od primera iz izveštaja:
@@ -125,6 +130,11 @@ Dodatna opcija koja je korišćena prilikom analize:
 Komanda kojom je pokrenuta analiza izgleda ovako:
 ```
 flawfinder --html 15-catch-me-if-you-can > flawfinder_result.html
+```
+
+Pokreće se pomoću [skripte](flawfinder/run_flawfinder.sh), koja nakon izvršavanja komade otvara *flawfinder_result.html* u **Firefox**-u:
+```
+./run_flawfinder.sh
 ```
 
 Kompletan rezultat primene *Flawfinder* alata nalazi se u fajlu [*flawfinder_result.html*](flawfinder/flawfinder_result.html).
@@ -183,6 +193,11 @@ Komanda kojom je pokrenuta analiza na kraju izgleda ovako:
 valgrind --show-leak-kinds=all --leak-check=full --track-origins=yes --log-file="report-memcheck.txt" ./catchme 
 ```
 
+Pokreće se pomoću [skripte](valgrind/memcheck/run_memcheck.sh):
+```
+./run_memcheck.sh
+```
+
 Kompletan izveštaj dobijen primenom *Memcheck* alata nalazi se u fajlu [*report-memcheck.txt*](valgrind/memcheck/report-memcheck.txt).
 
 Sažetak analize (`12120` je PID):
@@ -238,6 +253,11 @@ Pre pokretanja komande potrebno je prevesti program u **Profile** režimu.
 Komanda kojom je pokrenuta analiza izgleda ovako:
 ```
 valgrind --tool=callgrind --log-file="report-callgrind" ./catchme
+```
+
+Pokreće se pomoću [skripte](valgrind/callgrind/run_callgrind.sh):
+```
+./run_callgrind.sh
 ```
 
 Kao rezultat analize, pored *report-callgrind* fajla dobija se i [*callgrind.out.11677*](valgrind/callgrind/callgrind.out.11677) fajl (`11677` je PID). \
