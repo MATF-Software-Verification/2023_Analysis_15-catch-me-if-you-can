@@ -164,8 +164,8 @@ Valgrind obuhvata sledeće alate:
 * *Memcheck* (detektor memorijskih grešaka)
 * *Massif* (praćenje rada dinamičke memorije)
 * *Callgrind* (profajler funkcija)
-* *Cachegrind* (profajler kes memorije)
-* *Hellgrind* i *DRD* (detektori gresaka u radu sa nitima)
+* *Cachegrind* (profajler keš memorije)
+* *Hellgrind* i *DRD* (detektori grešaka u radu sa nitima)
 
 Za instalaciju *Valgrind* alata potrebno je u terminalu pokrenuti sledeću komandu:
 ```
