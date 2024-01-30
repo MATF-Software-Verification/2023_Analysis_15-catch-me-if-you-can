@@ -7,13 +7,14 @@
 
 
 # :wrench: Alati koji su korišćeni:
-* Clang-Tidy
-* Clazy
+* Clang
+  - Clang-Tidy
+  - Clazy
 * Cppcheck
 * Flawfinder
 * Valgrind
-    - Memcheck
-    - Callgrind
+  - Memcheck
+  - Callgrind
 
 
 
