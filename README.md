@@ -18,7 +18,7 @@
 
 
 # :memo: Zaključak:
-
+Sveukupni utisak dobijen analizom ovog projekta ukazuje da nisu pronađeni veći propusti koji mogu značajno uticati na njegovu funkcionalnost, ali ima prostora za napredak. Analiza je pokazala da ima propusta u radu sa memorijom. Postoje delovi koda koji su zakomentarisani i koje bi trebalo obrisati, takođe postoje i funkcije koje se nigde ne koriste. Usvajanjem nekih od predloga stilskih upozorenja može se dodatno poboljšati čitljivost i kvalitet koda. 
 
 # Autor:
 Natalija Asanović, 1038/2023
