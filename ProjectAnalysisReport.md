@@ -238,7 +238,7 @@ Dobra praksa bi bila i uvođenje *unique_ptr* i *shared_ptr* pokazivača, na mes
 
 ### Callgrind
 
-Callgrind je alat za profajliranje koji čuva istoriju poziva funkcija u programu kao graf poziva.\
+**Callgrind** je alat za profajliranje koji čuva istoriju poziva funkcija u programu kao graf poziva.\
 Neke od informacija koje se mogu dobiti za zadati program su:
 * broj izvršenih instrukcija
 * odnosi izvršenih instrukcija sa odgovarajućim linijama koda
@@ -272,3 +272,126 @@ Na sledećoj slici sa leve strane nalaze se informacije o broju poziva svake fun
 ![img](valgrind/callgrind/kcachegrind_mainwindow_callers_callees.png)
 
 **Komentar:** Posmatranjem izveštaja, moze se zaključiti da nema velikog broja poziva funkcija u delu koda koji su implementirali programeri projekta.
+
+
+### Massif
+
+**Massif** je alat za profajliranje hip memorije. Detektuje memoriju koja fizički nije iscurela, ali se ne upotrebljava i samim tim zauzima prostor koji bi mogao da bude bolje iskorišćen.
+*Massif* nam može reći i koliko memorije na hipu program koristi i tačnu liniju koda koja je zaslužna za njegovu alokaciju.
+
+Pre pokretanja alata potrebno je prevesti program u **Debug** režimu.
+
+Komanda kojom je pokrenuta analiza izgleda ovako:
+```
+valgrind --tool=massif  ./catchme
+```
+
+Kao rezultat dobija se fajl [*massif.out.9938*](valgrind/massif/massif.out.9938) koji nije čitljiv. Za dobijanje čitljivih rezulata koristi se `ms_print`:
+```
+ms_print massif.out.9938 > massif.txt
+```
+
+Graf koji se nalazi u fajlu [*massif.txt*](valgrind/massif/massif.txt):
+```
+--------------------------------------------------------------------------------
+Command:            ./catchme
+Massif arguments:   (none)
+ms_print arguments: massif.out.9938
+--------------------------------------------------------------------------------
+
+
+    MB
+647.0^                                                             #          
+     |                                           @     @ :        :#    ::::@:
+     |                                      @::@:@:::::@::::::::@::#::::::::@:
+     |                                     @@::@:@:::::@::::: ::@::#::::::::@:
+     |                                  :::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                             @:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                            :@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                           ::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                         ::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                      :::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                   @@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                  :@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |                :::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |             ::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |           ::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |        :::::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |     @:::::::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |     @:::::::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     |  @::@:::::::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+     | @@::@:::::::::::::@@::::::::@:::::::@@::@:@:::::@::::: ::@::#::::::::@:
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   46.86
+
+Number of snapshots: 78
+ Detailed snapshots: [1, 2, 3, 6, 20, 21, 31, 39, 40, 43, 45, 51, 61, 65 (peak), 75]
+```
+```
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 65 42,909,563,686      678,441,144      677,448,480       992,664            0
+```
+
+**Komentar:** *Massif* je 75 puta napravio presek stanja. Pik u utrošku memorije dostiže u 65. preseku i iznosi 647MB.
+Podaci o ostalim presecima se mogu naći u priloženom fajlu. Na osnovu grafa se može zaključiti da program troši sve veću količinu memorije kako vreme 
+korišćenja prolazi, nema naglih skokova ili padova, ali je potrošnja memorije u svakom trenutku velika.
+
+Ovi rezultati mogu se pokazati i vizuelno pomoću alata *Massif Visualizer*.
+
+![img](valgrind/massif/massif.png)
+
+Massif takođe omogućava i merenje zauzeća memorije na steku. U tom slučaju, komanda kojom se pokreće analiza izgleda ovako:
+```
+valgrind --tool=massif --stack=yes ./catchme
+```
+
+Dobijeni graf nalazi se u fajlu [*massif_with_stack.txt*](valgrind/massif/massif_with_stack.txt) i izgleda ovako:
+```
+--------------------------------------------------------------------------------
+Command:            ./catchme
+Massif arguments:   --stacks=yes
+ms_print arguments: massif.out.2757
+--------------------------------------------------------------------------------
+
+
+    MB
+775.2^                                                                       #
+     |                                                                    @@@#
+     |                                                                @@:@@@@#
+     |                                                             @@@@@:@@@@#
+     |                                             :@    : :@:::::@@@@@@:@@@@#
+     |                                         :::::@:::@:::@:::::@@@@@@:@@@@#
+     |                                      @@::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                                 @ :::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                               ::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                             ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                         @:::::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                       @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                    :::@@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |                 ::::: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |               :::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |           :::::::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |        :::::: :::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |      :::::::: :::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |    :::::::::: :::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+     |  :@: :::::::: :::: :: @@@:: ::::@::::@ ::::::@:::@:::@:::::@@@@@@:@@@@#
+   0 +----------------------------------------------------------------------->Gi
+     0                                                                   44.19
+
+Number of snapshots: 92
+ Detailed snapshots: [3, 22, 23, 24, 31, 37, 44, 49, 58, 68, 71, 73, 75, 77, 79, 83, 85, 87, 89, 91 (peak)]
+```
+```
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 91 47,444,422,610      812,857,472      811,728,839     1,116,801       11,832
+```
+
+**Komentar:** *Massif* je ovog puta napravio 91 presek stanja, a pik u utrošku memorije dostiže u 91. preseku i sada iznosi 775.2MB. Podaci o ostalim presecima se mogu naći u priloženom fajlu. 
+
+Ovi rezultati mogu se pokazati i vizuelno pomoću alata *Massif Visualizer*.
+
+![img](valgrind/massif/massif_with_stack.png)
